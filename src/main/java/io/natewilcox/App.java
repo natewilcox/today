@@ -1,13 +1,8 @@
 package io.natewilcox;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println(args);
+public class App {
+    public static void main(String[] args) {
+
+        Command cmd = new Command(args);
     }
 }
