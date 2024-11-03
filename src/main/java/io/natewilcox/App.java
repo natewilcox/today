@@ -1,20 +1,21 @@
 package io.natewilcox;
 
-import java.io.IOException;
+import java.net.http.HttpClient;
 
 public class App {
     public static void main(String[] args) {
 
-        Command cmd = new Command(args);
+        String type = "deaths";
 
-        try {
-            cmd.execute();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        if (args.length == 1) {
+            type = args[0];
         }
+
+        HttpClient client = HttpClient.newBuilder().build();
+        FetchService service = new HttpClientFetchService(client);
+        Consumer consumer = new JacksonParserConsumer();
+
+        Command cmd = new Command(type, service, consumer);
+        cmd.execute();
     }
 }
