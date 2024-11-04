@@ -22,11 +22,11 @@ public class HttpClientFetchService implements FetchService {
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create(url)).build();
         HttpResponse<String> response = null;
 
-		try {
-			response = this.client.send(request, BodyHandlers.ofString());
-		} catch (IOException | InterruptedException e) {
-			e.printStackTrace();
-		}
+        try {
+            response = this.client.send(request, BodyHandlers.ofString());
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
 
         return response != null ? response.body() : null;
     }
