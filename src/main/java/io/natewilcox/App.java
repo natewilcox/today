@@ -7,9 +7,13 @@ public class App {
 
         HttpClient client = HttpClient.newBuilder().build();
         FetchService service = new HttpClientFetchService(client);
+
         Command cmd = new OnThisDayCommand("deaths", service);
         PrintTextCommandWrapper cmdPrinter = new PrintTextCommandWrapper(cmd);
 
-        cmdPrinter.execute();
+        var parser = new ArgParser.Builder().
+            on("help", new HelpCommand()).
+            on("deaths", cmdPrinter).
+            execute(args);
     }
 }

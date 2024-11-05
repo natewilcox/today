@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class PrintTextCommandWrapper {
+public class PrintTextCommandWrapper implements Command {
 
     private Command command;
 
@@ -12,7 +12,7 @@ public class PrintTextCommandWrapper {
         this.command = command;
     }
 
-    public void execute() {
+    public String execute() {
 
         String response = this.command.execute();
         ObjectMapper mapper = new ObjectMapper();
@@ -29,5 +29,7 @@ public class PrintTextCommandWrapper {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
+
+        return null;
     }
 }
